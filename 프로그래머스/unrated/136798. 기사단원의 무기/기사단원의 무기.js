@@ -11,10 +11,7 @@ function solution(number, limit, power) {
             }
         }
         // 만약 약수의 개수가 공격력의 제한 수치보다 클 경우 power로 변경
-        if(measure[i] > limit){
-            measure[i] = power;
-        }
+        if(measure[i] > limit) measure[i] = power;
     }
     return measure.reduce((acc,cur) => acc + cur, 0);
-    
 }
