@@ -1,10 +1,8 @@
 function solution(a, b, n) {
     let result = 0;
-    let rest = 0;
     let service = 0;
     
     while(true){
-        if(n < 2) break;
         if(n % a === 0){
             service = n / a;
             result += service * b;
@@ -17,7 +15,6 @@ function solution(a, b, n) {
                 break;
             }
             result += service * b;
-            rest = n % a;
             n = n - (service * a) + (service * b);
         }
     }
