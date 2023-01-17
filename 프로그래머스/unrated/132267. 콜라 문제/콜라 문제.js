@@ -11,7 +11,8 @@ function solution(a, b, n) {
             n = n - (service * a) + (service * b);
         }
         if(n % a < a){
-            service = parseInt(n / a);
+            // 정수 만들기 틸트 연산자
+            service = ~~(n / a);
             if(service === 0){
                 break;
             }
