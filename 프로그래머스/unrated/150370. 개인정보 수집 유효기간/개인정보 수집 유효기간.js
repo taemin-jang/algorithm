@@ -26,14 +26,19 @@ function solution(today, terms, privacies) {
         d--;
         
         // 만약 달이 12보다 클 경우
-        if(m>=13){
-            // 연도에는 달을 13으로 나눈 정수 값만큼 더해준다.
-            // 13으로 나눈 이유는 12월까지 있기 때문에 12로 나누면 12월은 포함이 안됨
-            y += m % 12 === 0 ? parseInt(m / 12) - 1 : parseInt(m / 12);
-            
-            // 달을 13으로 나눴을 때 0이면 새로운 년도 1월을 의미, 아닐경우 만약 14월이면 13으로 나눴을 때
-            // 1이 남는다. 하지만 14월은 새로운 년도 2월을 의미하므로 1을 더해줌
-            m = m % 12 === 0 ? 12 : m % 12;
+        if(m>12){
+            // 달을 12으로 나눴을 때
+            if(m % 12 === 0){
+                // 12의 배수이면 년도는 바뀌지 않음
+                y += parseInt(m/12) - 1;
+                // 0이면 12월 
+                m = 12;
+            }else{
+                // 12의 배수가 아닌 경우는 년도가 바뀜
+                y += parseInt(m/12);
+                // 아닐경우 12로 나눈 나머지
+                m = m % 12;
+            }
         }
         // d-- 해서 일자가 0이 된 경우
         if(d === 0){
@@ -73,64 +78,3 @@ function solution(today, terms, privacies) {
     })
     return result;
 }
-
-// function solution(today, terms, privacies) {
-//     let answer = [];
-//     const obj = {};
-//     let cnt = 1;
-
-//     let tmp = today.split(".")
-//     const today_year = parseInt(tmp[0])
-//     const today_month = parseInt(tmp[1])
-//     const today_day = parseInt(tmp[2])
-
-//     for (let t of terms){
-//         tmp = t.split(" ")
-//         obj[tmp[0]] = tmp[1]
-//     }
-
-//     for (let p of privacies){
-//         tmp = p.split(" ");
-//         let year = parseInt(tmp[0].split(".")[0]);
-//         let month = parseInt(tmp[0].split(".")[1]);
-//         let day = parseInt(tmp[0].split(".")[2]);
-//         let term = parseInt(obj[tmp[1]])
-
-//         if (day - 1 === 0){
-//             day = 28
-//             month -=1
-//             if(month === 0){
-//                 year--;
-//                 month = 12;
-//             }
-//         }else{
-//             day -= 1
-//         }
-
-//         if (month + term > 12){
-//             year += (parseInt((month + term) / 12));
-//             if ((month + term) % 12 === 0){
-//                 month = 12;
-//             }else{
-//                 month = (month + term) % 12;
-//             }
-//         }else{
-//             month += term;
-//         }
-//         console.log(year,month,day)
-//         if (today_year > year){
-//             answer.push(cnt)
-//         }else if (today_year === year){
-//             if (today_month > month){
-//                 answer.push(cnt)
-//             }
-//             else if (today_month === month){
-//                 if(today_day > day){
-//                     answer.push(cnt)
-//                 }
-//             }
-//         }
-//         cnt++;
-//     }
-//     return answer;
-// }
