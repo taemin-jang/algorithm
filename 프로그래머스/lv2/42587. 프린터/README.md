@@ -1,10 +1,10 @@
 # [level 2] 프린터 - 42587 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42587#qna) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42587) 
 
 ### 성능 요약
 
-메모리: 33.4 MB, 시간: 0.25 ms
+메모리: 33.4 MB, 시간: 0.19 ms
 
 ### 구분
 

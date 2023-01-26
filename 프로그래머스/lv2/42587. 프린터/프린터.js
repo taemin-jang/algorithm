@@ -7,9 +7,8 @@ function solution(priorities, location) {
         if(priorities.some(v => tamp[0] < v[0])) priorities.push(tamp);
         else {
             arr.push(tamp);
-            if(arr[answer][1] === location) break;
+            if(arr[answer][1] === location) return ++answer;
             else answer++;
         }
     }
-    return ++answer;
 }
