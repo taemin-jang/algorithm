@@ -21,10 +21,9 @@ function permutation(arr, num) {
     if(num === 1) return arr;
     
     arr.forEach((v,i,origin) => {
-        let fixed = v;
         let restArr = origin.filter((value,index) => index !== i);
         let permuArr = permutation(restArr, num - 1);
-        let arr = permuArr.map(v => fixed + v);
+        let arr = permuArr.map(val => val + v);
         result.push(...arr)
     })
     return result;
