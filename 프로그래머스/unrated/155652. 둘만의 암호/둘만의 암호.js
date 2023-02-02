@@ -2,8 +2,8 @@ function solution(s, skip, index) {
     let answer = '';
     let alphabet = [...'abcdefghijklmnopqrstuvwxyz'].filter(v => ![...skip].includes(v));
     let sArr = [...s];
-    for(let i = 0; i < sArr.length; i++){
-        let idx = alphabet.indexOf(sArr[i]);
+    for(v of sArr){
+        let idx = alphabet.indexOf(v);
         const newIdx = (id) => {
             return id > alphabet.length - 1 ? newIdx(id - alphabet.length) : id;
         }
