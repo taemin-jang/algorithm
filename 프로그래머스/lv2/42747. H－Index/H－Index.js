@@ -1,9 +1,13 @@
 function solution(citations) {
-    let newArr = citations.sort((a,b) => b - a);
-    let arr = {};
-    for(let i = 0; i < newArr.length; i++){
-        if(i >= newArr[i]) return i;
-        arr[newArr[i]] = i+1;
-    }
-    return Object.values(arr)[0];
+     citations = citations.sort(sorting);
+     var i = 0;
+     while(i + 1 <= citations[i]){
+         i++;
+     }
+     return i;
+
+
+     function sorting(a, b){
+         return b - a;
+     }
 }
