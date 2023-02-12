@@ -26,5 +26,6 @@ function solution(maps) {
             }
         }
     }
+    console.log(visit)
     return visit[n-1][m-1] ? visit[n-1][m-1] : -1;
 }
