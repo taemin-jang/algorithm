@@ -7,22 +7,24 @@ function solution(maps) {
     // 상 우 하 좌로 이동하기 위한 배열
     const position = [[1,0],[0,1],[-1,0],[0,-1]];
     let need = [];
-    // 레버와 출구의 위치
+    // 레버와 출구, 시작 위치
     let l = [];
     let e = [];
+    let s = [];
     // 레버와 출구의 도착 유무
     let isL = false;
     let isE = false;
     
     // 시작 위치, 레버 위치, 출구 위치 저장
     maps.forEach((v,i) => {
-        if(v.includes("S")) need.push([i,v.indexOf("S")]);
+        if(v.includes("S")) s.push(i,v.indexOf("S"));
         if(v.includes("L")) l.push(i,v.indexOf("L"));
         if(v.includes("E")) e.push(i,v.indexOf("E"));
     })
      
     // 시작 위치에 1을 저장
-    lArr[need[0][0]][need[0][1]] = 1;
+    lArr[s[0]][s[1]] = 1;
+    need.push(s)
     while((!isL || !isE) && need.length){
         // [row, column] 현재 좌표
         const [r, c] = need.shift();
@@ -40,7 +42,7 @@ function solution(maps) {
                 if(lArr[l[0]][l[1]]) {
                     isL = true;
                     need = [l];
-                    eArr[need[0][0]][need[0][1]] = 1;
+                    eArr[l[0]][l[1]] = 1;
                 }
             }
         }else{
