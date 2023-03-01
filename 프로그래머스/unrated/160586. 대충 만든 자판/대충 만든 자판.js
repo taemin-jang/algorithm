@@ -1,21 +1,18 @@
 function solution(keymap, targets) {
     let keyMap = new Map();
     let answer = [];
-    for(let key of keymap){
+    keymap.forEach(key => {
         for(let i = 0; i < key.length; i++){
-            if(!keyMap.has(key[i]) || i + 1 < keyMap.get(key[i])) keyMap.set(key[i], i+1);
+            if(!keyMap.has(key[i]) || i < keyMap.get(key[i])) keyMap.set(key[i], i + 1);
         }
-    }
-    for(let target of targets){
+    })
+    
+    targets.forEach(target => {
         let cnt = 0;
         for(let i = 0; i < target.length; i++){
             cnt += keyMap.get(target[i]);
         }
-        if(cnt) {
-            answer.push(cnt);
-            continue;
-        }
-        answer.push(-1);
-    }
+        answer.push(cnt || -1);
+    })
     return answer;
 }
