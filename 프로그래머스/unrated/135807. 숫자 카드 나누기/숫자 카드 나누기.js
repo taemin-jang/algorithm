@@ -14,12 +14,12 @@ function solution(arrayA, arrayB) {
     }else{
         a = arrayA[0];
         b = arrayB[0];
-        if((!arrayB.filter(v => !(v % a)).length && a !== 1)){
-            if(!arrayA.filter(v => !(v % b)).length && b !== 1){
-                answer = b > answer ? b : answer;
-            }
-            answer = a > answer ? a : answer;
-        }
+        // if((!arrayB.filter(v => !(v % a)).length && a !== 1)){
+        //     if(!arrayA.filter(v => !(v % b)).length && b !== 1){
+        //         answer = b > answer ? b : answer;
+        //     }
+        //     answer = a > answer ? a : answer;
+        // }
     }
     // 나머지가 없으면 안나눠진다는 의미 조건 성립
     if((!arrayB.filter(v => !(v % a)).length && a !== 1)){
