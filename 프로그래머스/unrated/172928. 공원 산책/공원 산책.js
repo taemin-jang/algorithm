@@ -1,5 +1,4 @@
 function solution(park, routes) {
-    let map = Array.from(Array(park.length), () => Array(park[0].length).fill(0));
     let directions ={
         // [x, y]
         "E" : [1,0],
