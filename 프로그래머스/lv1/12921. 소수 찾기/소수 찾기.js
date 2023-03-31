@@ -9,6 +9,5 @@ function solution(n) {
           j++;
         }
     }
-    console.log(arr)
     return arr.filter(v => v).length;
 }
