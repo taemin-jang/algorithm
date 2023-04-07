@@ -11,5 +11,5 @@ function solution(players, callings) {
         maps[v]--;
         maps[players[num]]++;
     })
-    return Object.entries(maps).sort((a,b) => a[1] - b[1]).map(v => v[0]);
+    return players;
 }
