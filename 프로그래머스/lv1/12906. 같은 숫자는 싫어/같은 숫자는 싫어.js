@@ -1,10 +1,11 @@
 function solution(arr)
 {
-    let answer = [];
-    arr.forEach((v,i) => {
-        if(answer.length === 0 || answer[answer.length-1] !== v){
-            answer.push(v);
+    const stack = [];
+    arr.forEach((num,i) => {
+        if(!stack.length) stack.push(num);
+        else{
+            if(stack[stack.length - 1] !== num) stack.push(num);
         }
     })
-    return answer;
+    return stack;
 }
