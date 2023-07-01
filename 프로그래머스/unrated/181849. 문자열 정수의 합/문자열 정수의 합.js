@@ -1,0 +1,1 @@
+const solution = (num_str) => num_str.split("").map(Number).reduce((acc, cur) => acc + cur, 0);
