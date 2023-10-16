@@ -1,44 +1,44 @@
 let fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+let input = fs.readFileSync("/dev/stdin").toString().split("\n");
 
-let [N, M, K] = input[0].split(" ").map(Number);
+let [N, M, K] = input[0].trim().split(" ").map(Number);
+let pos = [[0,1],[-1,0],[0,-1],[1,0]];
+let arr = Array.from(Array(N), () => Array(M).fill('.'));
 
-let map = Array.from(Array(N).fill("."), () => Array(M).fill("."));
-let dy = [-1, 0, 1, 0];
-let dx = [0, -1, 0, 1]; // 남 서 북 동
-
-for (let i = 1; i <= K; i++) {
-  let [n, m] = input[i].split(" ").map(Number);
-  map[n - 1][m - 1] = "#";
+// 음식물 쓰레기 지도
+for(let i = 1; i <= K; i++){
+  let [x, y] = input[i].trim().split(" ").map((v) => Number(v-1));
+  arr[x][y] = "#";
 }
+const isValid = (x, y) => {
+  return 0 <= x && x < M && 0 <= y && y < N;
+}
+const checkMap = Array.from(Array(N), () => Array(M).fill(false));
 
-let chk = Array.from(Array(N).fill(false), () => Array(M).fill(false));
-let count = 1;
-let max = 0;
+let count = 0;
+let result = [];
 
-const isValid = (y, x) => {
-  return 0 <= y && y < N && 0 <= x && x < M ? true : false;
-};
-
-const dfs = (y, x) => {
-  chk[y][x] = true;
-  for (let i = 0; i < 4; i++) {
-    let ny = y + dy[i];
-    let nx = x + dx[i];
-    if (isValid(ny, nx) && map[ny][nx] === "#" && !chk[ny][nx]) {
+const dfs = (x, y) => {
+  if(checkMap[y][x]) return;
+  checkMap[y][x] = true;
+  for(let i = 0; i < 4; i++){
+    let nx = x + pos[i][0];
+    let ny = y + pos[i][1];
+    if(isValid(nx, ny) && !checkMap[ny][nx] && arr[ny][nx] === "#"){
       count++;
-      dfs(ny, nx);
+      dfs(nx, ny);
     }
   }
-  max = count > max ? count : max;
-};
+  return count;
+}
 
-for (let i = 0; i < N; i++) {
-  for (let j = 0; j < M; j++) {
-    if (map[i][j] === "#") {
-      dfs(i, j);
+for(let i = 0; i < N; i++){
+  for(let j = 0; j < M; j++){
+    if(arr[i][j] === "#" && !checkMap[i][j]){
       count = 1;
+      result.push(dfs(j, i));
     }
   }
 }
-console.log(max);
+
+console.log(Math.max(...result))
