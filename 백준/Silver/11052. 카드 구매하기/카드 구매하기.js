@@ -12,7 +12,6 @@ let input = fs.readFileSync('/dev/stdin').toString().trim().split("\n");
 let n = +input[0];
 const cards = input[1].split(" ").map(Number);
 const dp = Array(1001).fill(0);
-let max = 0;
 
 for(let i = 1; i <= n; i++){
     for(let j = 1; j <= i; j++){
